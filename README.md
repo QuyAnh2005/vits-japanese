@@ -1,7 +1,9 @@
 # VITS for Japanese
-In the repository, I will introduce a VITS model that can train for Japanese on pytorch verson 2.0.0.
+In the repository, I will introduce a VITS model that can train for Japanese on pytorch version 2.0.0.
 
-**Several recent end-to-end text-to-speech (TTS) models enabling single-stage training and parallel sampling have been proposed, but their sample quality does not match that of two-stage TTS systems. In this work, we present a parallel end-to-end TTS method that generates more natural sounding audio than current two-stage models. Our method adopts variational inference augmented with normalizing flows and an adversarial training process, which improves the expressive power of generative modeling. We also propose a stochastic duration predictor to synthesize speech with diverse rhythms from input text. With the uncertainty modeling over latent variables and the stochastic duration predictor, our method expresses the natural one-to-many relationship in which a text input can be spoken in multiple ways with different pitches and rhythms. A subjective human evaluation (mean opinion score, or MOS) on the LJ Speech, a single speaker dataset, shows that our method outperforms the best publicly available TTS systems and achieves a MOS comparable to ground truth.**
+*VITS: Conditional Variational Autoencoder with Adversarial Learning for End-to-End Text-to-Speech*
+
+*Several recent end-to-end text-to-speech (TTS) models enabling single-stage training and parallel sampling have been proposed, but their sample quality does not match that of two-stage TTS systems. In this work, we present a parallel end-to-end TTS method that generates more natural sounding audio than current two-stage models. Our method adopts variational inference augmented with normalizing flows and an adversarial training process, which improves the expressive power of generative modeling. We also propose a stochastic duration predictor to synthesize speech with diverse rhythms from input text. With the uncertainty modeling over latent variables and the stochastic duration predictor, our method expresses the natural one-to-many relationship in which a text input can be spoken in multiple ways with different pitches and rhythms. A subjective human evaluation (mean opinion score, or MOS) on the LJ Speech, a single speaker dataset, shows that our method outperforms the best publicly available TTS systems and achieves a MOS comparable to ground truth.*
 
 We also provide the [pretrained models](https://drive.google.com/file/d/13LShhGTpVhwQTWonR-mzzZA4-burHzVD/view?usp=sharing).
 <table style="width:100%">
@@ -33,7 +35,7 @@ python setup.py build_ext --inplace
 ```
 
 
-## Training Exmaple
+## Training Example
 ```sh
 # JP Speech
 python train.py -c configs/jp_base.json -m jp_base
