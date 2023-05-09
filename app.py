@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+import torch
 from io import BytesIO
 from PIL import Image
 import numpy as np
