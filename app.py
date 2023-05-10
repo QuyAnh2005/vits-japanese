@@ -12,6 +12,10 @@ from models import SynthesizerTrn
 from text.symbols import symbols
 from text import text_to_sequence
 
+import subprocess
+import os
+import sys
+sys.path.append('.')
 
 def get_text(text, hps):
     text_norm = text_to_sequence(text, hps.data.text_cleaners)
@@ -50,7 +54,12 @@ net_g = SynthesizerTrn(
     hps.train.segment_size // hps.data.hop_length,
     **hps.model)
 _ = net_g.eval()
-_ = utils.load_checkpoint(pretrained_model, net_g, None)
+if os.path.isfile(pretrained_model):
+    _ = utils.load_checkpoint(pretrained_model, net_g, None)
+else:
+    # Run the shell script
+    subprocess.call('./startup.sh', shell=True)
+    _ = utils.load_checkpoint(pretrained_model, net_g, None)
 
 
 st.set_page_config(page_title="Text-to-Speech Demo")
