@@ -9,6 +9,8 @@ import numpy as np
 import commons
 import utils
 import subprocess
+import sys
+sys.path.append('.')
 
 # Run the shell script
 subprocess.call('./startup.sh', shell=True)
