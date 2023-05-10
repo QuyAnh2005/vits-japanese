@@ -1,7 +1,8 @@
 import streamlit as st
 import base64
 import torch
-from io import BytesIO
+import io
+from scipy.io.wavfile import write
 from PIL import Image
 import numpy as np
 
@@ -40,14 +41,16 @@ def text_to_speech(text):
 
 # Load the trained model
 hps = utils.get_hparams_from_file("./configs/jp_base.json")
+hps.model_dir = 'logs/jp_base'
+pretrained_model = f'{hps.model_dir}/model.pth'
+
 net_g = SynthesizerTrn(
     len(symbols),
     hps.data.filter_length // 2 + 1,
     hps.train.segment_size // hps.data.hop_length,
     **hps.model)
 _ = net_g.eval()
-hps.model_dir = 'logs/jp_base'
-_ = utils.load_checkpoint(utils.latest_checkpoint_path(hps.model_dir, "G_*.pth"), net_g, None)
+_ = utils.load_checkpoint(pretrained_model, net_g, None)
 
 
 st.set_page_config(page_title="Text-to-Speech Demo")
@@ -62,9 +65,8 @@ if st.button("Convert to Speech"):
 
     # Convert base64 string to audio
     wav_data = base64.b64decode(speech)
-    with BytesIO(wav_data) as stream:
+    with io.BytesIO(wav_data) as stream:
         audio = stream.read()
 
     # Display audio
     st.audio(audio)
-
