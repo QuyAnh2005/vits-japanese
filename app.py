@@ -8,12 +8,6 @@ import numpy as np
 
 import commons
 import utils
-import subprocess
-import sys
-sys.path.append('.')
-
-# Run the shell script
-subprocess.call('./startup.sh', shell=True)
 from models import SynthesizerTrn
 from text.symbols import symbols
 from text import text_to_sequence
