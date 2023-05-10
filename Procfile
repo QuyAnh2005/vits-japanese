@@ -1,1 +1,1 @@
-web: startup.sh && streamlit run app.py
+web: ./startup.sh && streamlit run app.py
