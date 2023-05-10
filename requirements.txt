@@ -8,3 +8,4 @@ fugashi==1.2.1
 ipadic==1.0.0
 pykakasi==2.2.1
 librosa==0.8.0
+monotonic-align==1.0.0
